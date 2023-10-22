@@ -553,14 +553,16 @@ export default function App() {
     let total = 0
     listItems.forEach((value, key) => {
       let parsedData = JSON.parse(value);
-      if (parsedData.priority == "Low") {
-        counter[0] += 1;
-      } else if (parsedData.priority == "Medium") {
-        counter[1] += 1;
-      } else {
-        counter[2] += 1;
+      if (parsedData.isComplete == false) {
+        if (parsedData.priority == "Low") {
+          counter[0] += 1;
+        } else if (parsedData.priority == "Medium") {
+          counter[1] += 1;
+        } else {
+          counter[2] += 1;
+        }
+        total += 1;
       }
-      total += 1;
     })
 
     const data = [0, 0, 0];
