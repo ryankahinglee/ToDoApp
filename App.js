@@ -28,9 +28,9 @@ export default function App() {
   const saveTask = async (key, json) => {
     try {
       await AsyncStorage.setItem(uniqueListKey + key, json);
-      console.log('Data saved to AsyncStorage.');
+      console.log('Data has been successfully saved.');
     } catch (error) {
-      console.error('Error saving data:', error);
+      console.error('An error has occured when saving data: ', error);
     }
   };
 
@@ -54,13 +54,13 @@ export default function App() {
   const deleteItemFromStorage = async (key) => {
     try {
       await AsyncStorage.removeItem(key);
-      console.log(`Deleted item with key: ${key}`);
+      console.log(`Key: ${key} has been deleted.`);
       // Updating local storage
       let newMap = new Map(listItems);
       newMap.delete(key);
       setListItems(newMap);
     } catch (error) {
-      console.error(`Error deleting item with key ${key}:`, error);
+      console.error(`Key ${key} had an error when deleting: `, error);
     }
   };
 
@@ -378,11 +378,11 @@ export default function App() {
     async function clearAsyncStorage() {
       try {
         await AsyncStorage.clear();
-        console.log('Async storage cleared successfully.');
+        console.log('Async storage has been cleared.');
         // Clear local storage
         setListItems(new Map());  
       } catch (error) {
-        console.error('Error clearing async storage:', error);
+        console.error('An error has occured when clearing asynchronous storage: ', error);
       }
     }
 
