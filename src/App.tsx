@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import * as React from 'react';
 import './App.css';
+import Todo from './ToDo';
+import Completed from './Completed'
+import NavigationSideBar from './components/NavigationSidebar';
 
 function App() {
+
+  const [display, setDisplay] = React.useState<string>("To-Do")
+
+  // List items
+  type StringObject = { [key: string]: string };
+  const [listItems, setListItems] = React.useState<StringObject>({})
+  const [completedItems, setCompletedItems] = React.useState<StringObject>({})
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{width: '100vw', height: '100vh'}}>
+      {display === "To-Do" && (
+        <Todo listItems={listItems} setListItems={setListItems} completedItems={completedItems} setCompletedItems={setCompletedItems}/>
+      )}
+      {display === "Completed" && (
+        <Completed completedItems={completedItems}/>
+      )}
+      <NavigationSideBar  setDisplay={setDisplay} />
     </div>
   );
 }
